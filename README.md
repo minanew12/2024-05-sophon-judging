@@ -18,13 +18,7 @@ https://github.com/sherlock-audit/2024-05-sophon/blob/main/farming-contracts/con
     function depositEth(uint256 _boostAmount, PredefinedPool _predefinedPool) public payable {
         if (msg.value == 0) {
             revert NoEthSent();
-        }
-
-        uint256 _finalAmount = msg.value;
-        if (_predefinedPool == PredefinedPool.wstETH) {
-            _finalAmount = _ethTOstEth(_finalAmount);
-        } else if (_predefinedPool == PredefinedPool.weETH) {
-            _finalAmount = _ethTOeEth(_finalAmount);
+        
         }
 
         _depositPredefinedAsset(_finalAmount, msg.value, _boostAmount, _predefinedPool);
